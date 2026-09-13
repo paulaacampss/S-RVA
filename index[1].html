@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="S-RVA 1978 — Premium streetwear. Same people, new vision.">
+<title>S-RVA 1978 | Premium Streetwear</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#090909;color:#fff}
+a{color:inherit;text-decoration:none}button{font:inherit}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 4%;border-bottom:1px solid #242424;position:sticky;top:0;z-index:20;background:rgba(9,9,9,.97);backdrop-filter:blur(10px)}
+.logo{font-size:27px;font-weight:900;letter-spacing:8px}
+nav{display:flex;gap:32px;font-size:11px;font-weight:800;letter-spacing:1.4px}
+nav a:hover{text-decoration:underline;text-underline-offset:7px}
+.header-actions{display:flex;align-items:center;gap:20px}
+.icon{background:none;border:0;color:#fff;cursor:pointer;font-size:20px}
+.cart-icon{position:relative}.cart-count{position:absolute;top:-8px;right:-10px;background:#fff;color:#000;border-radius:50%;font-size:10px;min-width:17px;height:17px;display:grid;place-items:center;font-weight:900}
+
+.hero{min-height:590px;display:grid;grid-template-columns:46% 54%;background:#090909}
+.hero-copy{padding:80px 9%;display:flex;flex-direction:column;justify-content:center}
+.kicker{color:#aaa;font-size:13px;letter-spacing:2px;margin-bottom:25px}
+h1{font-size:clamp(58px,8vw,105px);line-height:.86;letter-spacing:-5px;margin-bottom:28px}
+.sub{color:#aaa;font-size:17px;line-height:1.5;margin-bottom:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#050505;padding:16px 27px;border:1px solid #fff;font-weight:900;letter-spacing:.5px;cursor:pointer;width:max-content}.btn:hover{background:#ddd}
+.hero-photo{background:url("hero.jpg") center/cover no-repeat;min-height:590px;filter:grayscale(100%)}
+
+.collection{padding:70px 4% 90px;background:#0b0b0b}
+.collection-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:34px}
+.label{color:#777;font-size:11px;letter-spacing:2px;font-weight:700}
+.collection h2{font-size:48px;letter-spacing:-2px;margin-top:9px}
+.collection-note{max-width:300px;text-align:right;color:#777;font-size:11px;line-height:1.6}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.product{background:#111;overflow:hidden}
+.product-image{height:390px;background:#e9e9e9;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.product:hover img{transform:scale(1.025)}
+.product-info{padding:16px 15px 17px}
+.product h3{font-size:14px;letter-spacing:.2px;margin-bottom:7px}
+.product-desc{color:#777;font-size:10px;line-height:1.4;min-height:29px;margin-bottom:10px;text-transform:uppercase}
+.price{font-size:14px;margin-bottom:12px;font-weight:700}
+.sizes{display:flex;gap:5px;margin-bottom:12px}.size{border:1px solid #444;background:#0d0d0d;color:#fff;min-width:34px;height:30px;cursor:pointer;font-size:11px}.size.active,.size:hover{background:#fff;color:#000;border-color:#fff}
+.add{width:100%;padding:12px;background:#fff;color:#000;border:0;font-weight:900;font-size:11px;cursor:pointer}.add:hover{background:#ddd}
+
+.lookbook{padding:0 4% 90px;background:#0b0b0b}
+.lookbook img{width:100%;display:block;max-height:800px;object-fit:cover;object-position:center}
+.lookbook-caption{display:flex;justify-content:space-between;padding:14px 0;color:#777;font-size:10px;letter-spacing:1.5px}
+
+.about{padding:85px 7%;background:#f3f3f3;color:#111;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about h2{font-size:clamp(45px,7vw,85px);line-height:.9;letter-spacing:-4px;margin-top:8px}
+.about-copy{max-width:520px;line-height:1.8;color:#444}.about-copy strong{color:#111}
+footer{padding:35px 4%;border-top:1px solid #222;display:flex;justify-content:space-between;gap:30px;color:#777;font-size:10px;letter-spacing:1.5px}.footer-links{display:flex;gap:22px}
+
+.drawer{position:fixed;inset:0;z-index:50;display:none}.drawer.open{display:block}.overlay{position:absolute;inset:0;background:rgba(0,0,0,.72)}
+.cart{position:absolute;right:0;top:0;width:min(430px,92vw);height:100%;background:#f5f5f5;color:#111;padding:28px;display:flex;flex-direction:column}
+.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ccc;padding-bottom:18px}.cart-head h2{font-size:25px}.close{border:0;background:none;font-size:28px;cursor:pointer}
+.cart-items{flex:1;overflow:auto;padding:20px 0}.empty{color:#777;padding:35px 0;text-align:center}
+.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:12px;border-bottom:1px solid #ddd;padding:13px 0}.cart-item img{width:75px;height:90px;object-fit:cover}.cart-item h4{font-size:14px;margin-bottom:6px}.cart-item p{font-size:13px;color:#555}.remove{border:0;background:none;text-decoration:underline;cursor:pointer;font-size:12px}
+.cart-bottom{border-top:1px solid #ccc;padding-top:18px}.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:15px}.checkout{width:100%;padding:15px;background:#111;color:#fff;border:0;font-weight:800;cursor:pointer}.note{font-size:11px;color:#777;margin-top:10px;line-height:1.5}
+@media(max-width:1000px){.products{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){header{padding:0 5%}nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{min-height:520px;padding:70px 8%}.hero-photo{min-height:420px}.products{grid-template-columns:1fr 1fr}.product-image{height:330px}.collection-top{display:block}.collection-note{text-align:left;margin-top:15px}.about{grid-template-columns:1fr;padding:70px 8%}footer{flex-direction:column}.footer-links{flex-wrap:wrap}}
+@media(max-width:480px){.products{grid-template-columns:1fr}.product-image{height:420px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#inicio">S-RVA</a>
+<nav><a href="#inicio">INICIO</a><a href="#collection">COLECCIÓN</a><a href="#about">NOSOTROS</a></nav>
+<div class="header-actions">
+<button class="icon" aria-label="Ir a colección" onclick="document.getElementById('collection').scrollIntoView()">⌕</button>
+<button class="icon cart-icon" aria-label="Abrir carrito" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></button>
+</div>
+</header>
+
+<section class="hero" id="inicio">
+<div class="hero-copy">
+<p class="kicker">NUEVA COLECCIÓN — 1978</p>
+<h1>WEAR<br>YOUR<br>IDENTITY.</h1>
+<p class="sub">Streetwear creado para quienes no siguen las reglas.</p>
+<a href="#collection" class="btn">VER COLECCIÓN</a>
+</div>
+<div class="hero-photo"></div>
+</section>
+
+<section class="collection" id="collection">
+<div class="collection-top">
+<div><p class="label">S-RVA / FW25</p><h2>COLECCIÓN 1978</h2></div>
+<p class="collection-note">SAME PEOPLE. NEW VISION.<br>PREMIUM STREETWEAR — WORLDWIDE</p>
+</div>
+
+<div class="products">
+
+
+<article class="product">
+<div class="product-image"><img src="essential-hoodie.jpg" alt="S-RVA Essential Hoodie"></div>
+<div class="product-info">
+<h3>Essential Hoodie</h3>
+<p class="product-desc">LOGO BÁSICO / OVERSIZE FIT / WASHED EFFECT</p>
+<p class="price">59.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Essential Hoodie',59.90,'essential-hoodie.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="motion-hoodie.jpg" alt="S-RVA Motion Hoodie"></div>
+<div class="product-info">
+<h3>Motion Hoodie</h3>
+<p class="product-desc">GRÁFICO FRONTAL / RELAXED FIT / PREMIUM COTTON</p>
+<p class="price">64.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Motion Hoodie',64.90,'motion-hoodie.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="orbit-hoodie.jpg" alt="S-RVA Orbit Hoodie"></div>
+<div class="product-info">
+<h3>Orbit Hoodie</h3>
+<p class="product-desc">ESTAMPADO ESPALDA / OVERSIZE FIT / HEAVYWEIGHT</p>
+<p class="price">69.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Orbit Hoodie',69.90,'orbit-hoodie.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="contour-hoodie.jpg" alt="S-RVA Contour Hoodie"></div>
+<div class="product-info">
+<h3>Contour Hoodie</h3>
+<p class="product-desc">COSTURAS EN CONTRASTE / FIT RELAJADO / TACTILE FABRIC</p>
+<p class="price">64.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Contour Hoodie',64.90,'contour-hoodie.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="line-crewneck.jpg" alt="S-RVA Line Crewneck"></div>
+<div class="product-info">
+<h3>Line Crewneck</h3>
+<p class="product-desc">DETALLE EN PIPING / OVERSIZE FIT / WASHED COTTON</p>
+<p class="price">54.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Line Crewneck',54.90,'line-crewneck.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="vision-crewneck.jpg" alt="S-RVA Vision Crewneck"></div>
+<div class="product-info">
+<h3>Vision Crewneck</h3>
+<p class="product-desc">LOGO CENTRAL / RELAXED FIT / PREMIUM COTTON</p>
+<p class="price">54.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Vision Crewneck',54.90,'vision-crewneck.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="shadow-crewneck.jpg" alt="S-RVA Shadow Crewneck"></div>
+<div class="product-info">
+<h3>Shadow Crewneck</h3>
+<p class="product-desc">GRÁFICO VINTAGE / OVERSIZE FIT / WASHED EFFECT</p>
+<p class="price">59.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Shadow Crewneck',59.90,'shadow-crewneck.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+
+<article class="product">
+<div class="product-image"><img src="tomorrow-crewneck.jpg" alt="S-RVA Tomorrow Crewneck"></div>
+<div class="product-info">
+<h3>Tomorrow Crewneck</h3>
+<p class="product-desc">TEXTO ESPALDA / RELAXED FIT / PREMIUM COTTON</p>
+<p class="price">59.90 €</p>
+<div class="sizes"><button class="size active">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div>
+<button class="add" onclick="addToCart('Tomorrow Crewneck',59.90,'tomorrow-crewneck.jpg',this)">AÑADIR AL CARRITO</button>
+</div>
+</article>
+
+</div>
+</section>
+
+<section class="lookbook">
+<img src="collection.jpg" alt="Lookbook y colección S-RVA 1978">
+<div class="lookbook-caption"><span>S-RVA / 1978</span><span>SAME PEOPLE, NEW VISION.</span><span>WORLDWIDE</span></div>
+</section>
+
+<section class="about" id="about">
+<div><p class="label">ABOUT S-RVA</p><h2>NO ESTÁ<br>HECHO PARA<br>ENCAJAR.</h2></div>
+<div class="about-copy">
+<p><strong>S-RVA nace de la idea de crear algo diferente.</strong></p>
+<p>Ropa con actitud, para personas reales. No seguimos tendencias, las creamos.</p>
+<p>La colección 1978 representa identidad, carácter y libertad.</p>
+</div>
+</section>
+
+<footer><div>© 2026 S-RVA — TODOS LOS DERECHOS RESERVADOS.</div><div class="footer-links"><a href="#collection">COLECCIÓN</a><a href="#about">NOSOTROS</a><a href="mailto:contacto@s-rva.com">CONTACTO</a></div></footer>
+
+<div class="drawer" id="drawer">
+<div class="overlay" onclick="closeCart()"></div>
+<aside class="cart">
+<div class="cart-head"><h2>Tu carrito</h2><button class="close" onclick="closeCart()">×</button></div>
+<div class="cart-items" id="cartItems"></div>
+<div class="cart-bottom">
+<div class="total"><span>TOTAL</span><span id="cartTotal">0,00 €</span></div>
+<button class="checkout" onclick="checkout()">FINALIZAR PEDIDO</button>
+<p class="note">El carrito funciona en tu navegador. Para cobrar pagos reales necesitarás conectar una plataforma de pago.</p>
+</div>
+</aside>
+</div>
+
+<script>
+let cart=JSON.parse(localStorage.getItem('srvaCart')||'[]');
+document.querySelectorAll('.sizes').forEach(group=>group.querySelectorAll('.size').forEach(btn=>btn.addEventListener('click',()=>{group.querySelectorAll('.size').forEach(b=>b.classList.remove('active'));btn.classList.add('active')})));
+function saveCart(){localStorage.setItem('srvaCart',JSON.stringify(cart));renderCart()}
+function selectedSize(button){return button.parentElement.querySelector('.size.active')?.textContent||'S'}
+function addToCart(name,price,image,button){const size=selectedSize(button);const existing=cart.find(i=>i.name===name&&i.size===size);if(existing)existing.qty++;else cart.push({name,price,image,size,qty:1});saveCart();openCart()}
+function removeItem(index){cart.splice(index,1);saveCart()}
+function renderCart(){const box=document.getElementById('cartItems');document.getElementById('cartCount').textContent=cart.reduce((s,i)=>s+i.qty,0);if(!cart.length){box.innerHTML='<div class="empty">Tu carrito está vacío.</div>'}else{box.innerHTML=cart.map((i,index)=>`<div class="cart-item"><img src="${i.image}" alt=""><div><h4>${i.name}</h4><p>Talla: ${i.size}</p><p>${i.qty} × ${i.price.toFixed(2).replace('.',',')} €</p></div><button class="remove" onclick="removeItem(${index})">Eliminar</button></div>`).join('')}const total=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById('cartTotal').textContent=total.toFixed(2).replace('.',',')+' €'}
+function openCart(){renderCart();document.getElementById('drawer').classList.add('open')}
+function closeCart(){document.getElementById('drawer').classList.remove('open')}
+function checkout(){if(!cart.length){alert('Tu carrito está vacío.');return}const total=cart.reduce((s,i)=>s+i.price*i.qty,0);const order=cart.map(i=>`${i.qty}x ${i.name} - talla ${i.size}`).join('\n');alert('PEDIDO S-RVA\\n\\n'+order+'\\n\\nTOTAL: '+total.toFixed(2).replace('.',',')+' €\\n\\nPara cobrar pagos reales, conecta Stripe, PayPal u otra plataforma de pago.')}
+renderCart();
+</script>
+</body>
+</html>
